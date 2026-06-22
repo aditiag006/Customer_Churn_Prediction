@@ -1,0 +1,21 @@
+# Virtual environment
+churn_env/
+
+# Data
+data/raw/*.csv
+data/processed/*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+
+# Model artifacts
+outputs/models/*.pkl
+outputs/models/*.joblib
+
+# OS
+Thumbs.db
+.DS_Store
