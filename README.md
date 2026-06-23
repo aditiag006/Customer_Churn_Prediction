@@ -40,7 +40,7 @@ Customer churn — when a subscriber cancels or stops using a service — direct
 
 python -m venv churn\_env
 
-churn\_env\\Scripts\\activate
+churn\_env\Scripts\activate
 
 pip install -r requirements.txt
 
@@ -50,7 +50,10 @@ pip install -r requirements.txt
 
 \## Key Findings
 
-\*(To be filled in as the project progresses)\*
+\*- Target is moderately imbalanced: 73.5% No-churn vs 26.5% Churn
+- `TotalCharges` loaded as string due to 11 blank values, all corresponding to new customers with `tenure = 0`; imputed as 0
+- Several service columns (`OnlineSecurity`, `OnlineBackup`, etc.) had a redundant `"No internet service"` category tied to `InternetService`; consolidated into binary Yes/No
+- Engineered `TotalServices` (count of subscribed add-ons) and `TenureGroup` (lifecycle-stage buckets) as additional features\*
 
 
 
