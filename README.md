@@ -53,7 +53,8 @@ pip install -r requirements.txt
 \*- Target is moderately imbalanced: 73.5% No-churn vs 26.5% Churn
 - `TotalCharges` loaded as string due to 11 blank values, all corresponding to new customers with `tenure = 0`; imputed as 0
 - Several service columns (`OnlineSecurity`, `OnlineBackup`, etc.) had a redundant `"No internet service"` category tied to `InternetService`; consolidated into binary Yes/No
-- Engineered `TotalServices` (count of subscribed add-ons) and `TenureGroup` (lifecycle-stage buckets) as additional features\*
+- Engineered `TotalServices` (count of subscribed add-ons) and `TenureGroup` (lifecycle-stage buckets) as additional features
+- Baseline Logistic Regression: 76.2% accuracy; untuned XGBoost: 76.3% accuracy\*
 
 
 
