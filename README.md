@@ -54,7 +54,10 @@ pip install -r requirements.txt
 - `TotalCharges` loaded as string due to 11 blank values, all corresponding to new customers with `tenure = 0`; imputed as 0
 - Several service columns (`OnlineSecurity`, `OnlineBackup`, etc.) had a redundant `"No internet service"` category tied to `InternetService`; consolidated into binary Yes/No
 - Engineered `TotalServices` (count of subscribed add-ons) and `TenureGroup` (lifecycle-stage buckets) as additional features
-- Baseline Logistic Regression: 76.2% accuracy; untuned XGBoost: 76.3% accuracy\*
+- Baseline Logistic Regression: 76.2% accuracy; untuned XGBoost: 76.3% accuracy
+- Accuracy alone was misleading: Logistic Regression and untuned XGBoost both scored ~76% accuracy, but Logistic Regression caught significantly more actual churners (70% recall vs 60%)
+- GridSearchCV tuning (max_depth=7, learning_rate=0.01, n_estimators=200) improved XGBoost recall to 77%, F1 to 0.62, and ROC-AUC to 0.836 — surpassing Logistic Regression on every metric except accuracy and precision
+- Tuned XGBoost selected as the final model, prioritizing recall over accuracy given the business cost of missing actual churners\*
 
 
 
