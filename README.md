@@ -57,13 +57,21 @@ pip install -r requirements.txt
 - Baseline Logistic Regression: 76.2% accuracy; untuned XGBoost: 76.3% accuracy
 - Accuracy alone was misleading: Logistic Regression and untuned XGBoost both scored ~76% accuracy, but Logistic Regression caught significantly more actual churners (70% recall vs 60%)
 - GridSearchCV tuning (max_depth=7, learning_rate=0.01, n_estimators=200) improved XGBoost recall to 77%, F1 to 0.62, and ROC-AUC to 0.836 — surpassing Logistic Regression on every metric except accuracy and precision
-- Tuned XGBoost selected as the final model, prioritizing recall over accuracy given the business cost of missing actual churners\*
+- Tuned XGBoost selected as the final model, prioritizing recall over accuracy given the business cost of missing actual churners
+- SHAP analysis identified the strongest churn drivers: two-year contracts strongly reduce churn risk; fiber optic internet, electronic check payment, low tenure, and high monthly charges increase it
+- Local SHAP explanations (force plots) allow individual customer risk scores to be explained in plain terms, suitable for retention team use\*
 
 
 
-\## Results
+## Results
 
-\*(Model performance comparison table — to be added)\*
+| Model | Accuracy | Precision (Churn) | Recall (Churn) | F1 (Churn) | ROC-AUC |
+|---|---|---|---|---|---|
+| Logistic Regression | 0.762 | 0.54 | 0.70 | 0.61 | 0.832 |
+| XGBoost (untuned) | 0.763 | 0.55 | 0.60 | 0.58 | 0.805 |
+| **XGBoost (tuned)** | 0.75 | 0.52 | **0.77** | **0.62** | **0.836** |
+
+**Final model:** Tuned XGBoost, selected for highest recall and ROC-AUC — prioritizing catching actual churners over raw accuracy, given the asymmetric business cost of missed churners vs. false alarms.
 
 
 
