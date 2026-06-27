@@ -59,7 +59,9 @@ pip install -r requirements.txt
 - GridSearchCV tuning (max_depth=7, learning_rate=0.01, n_estimators=200) improved XGBoost recall to 77%, F1 to 0.62, and ROC-AUC to 0.836 — surpassing Logistic Regression on every metric except accuracy and precision
 - Tuned XGBoost selected as the final model, prioritizing recall over accuracy given the business cost of missing actual churners
 - SHAP analysis identified the strongest churn drivers: two-year contracts strongly reduce churn risk; fiber optic internet, electronic check payment, low tenure, and high monthly charges increase it
-- Local SHAP explanations (force plots) allow individual customer risk scores to be explained in plain terms, suitable for retention team use\*
+- Local SHAP explanations (force plots) allow individual customer risk scores to be explained in plain terms, suitable for retention team use
+- Built a reusable preprocessing module (`src/preprocessing.py`) mirroring all Day 2 transformations, enabling consistent inference on raw, unprocessed customer data
+- Deployed an interactive Streamlit app supporting both single-customer and batch CSV prediction, with SHAP explanations surfaced directly in the UI\*
 
 
 
@@ -73,6 +75,16 @@ pip install -r requirements.txt
 
 **Final model:** Tuned XGBoost, selected for highest recall and ROC-AUC — prioritizing catching actual churners over raw accuracy, given the asymmetric business cost of missed churners vs. false alarms.
 
+## Running the App
+
+```bash
+cd src
+streamlit run app.py
+```
+
+Features:
+- **Single Customer tab** — manually input customer attributes, get instant churn probability + SHAP explanation
+- **Batch Upload tab** — upload a CSV of customers, get sorted predictions, downloadable results, and aggregate SHAP feature-importance for the batch
 
 
 
